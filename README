@@ -1,0 +1,3 @@
+Run copy_html_code.py to copy to the clipboard the html code that will generate a publications list for a website.
+
+Run write_individual_bib_files.py to generate a separate .bib file for each paper.
