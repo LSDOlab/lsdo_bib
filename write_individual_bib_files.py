@@ -29,5 +29,5 @@ for key, ref in iteritems(bib_data_dict):
     bib_string = bib_database_.to_string('bibtex')
     html_string = bibtex_string.format(key, bib_string[:-1])
 
-    with open('generated_bib_files/{}.html'.format(key), 'w') as bibtex_file:
+    with open('bib/{}.html'.format(key), 'w') as bibtex_file:
         bibtex_file.write(html_string)
