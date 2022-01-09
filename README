@@ -2,6 +2,5 @@ Run copy_html_code.py to copy to the clipboard the html code that will generate 
 
 To create a dedicated bibtex file for a new paper:
 1. Add the bibtex information in lsdo_conference.bib or lsdo_journal.bib in the raw_bib directory.
-2. Run write_individual_bib_files.py to regenerate separate .bib files for each paper.
+2. Run write_individual_bib_files.py to regenerate separate .bib files for each paper. The .bib files for all the existing papers will just get overwritten with no changes.
 3. Commit to the main branch and push to keep the repository up to date.
-4. Switch to the gh-pages branch and upload the new html bib file in the bib/ directory (this can be done within the browser on GitHub, rather than dealing with switching between branches in terminal).
