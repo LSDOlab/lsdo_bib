@@ -106,7 +106,7 @@ class HTMLWriter(object):
         if pdf is not None:
             self.write_button_link('pdf', pdf)
 
-    def write_lines_by_type(self, bib_data_dict, type_):
+    def write_lines_by_type(self, bib_data_dict, keys, type_):
         if type_ is 'conference':
             heading = 'Conference papers'
             label = '[C{}]'
@@ -117,9 +117,10 @@ class HTMLWriter(object):
         # Count number of journal/conference papers
         count = 0
         ref_types = {'journal': ('article',), 'conference': ('inproceedings',), 'both': ('article', 'inproceedings')}
-        for _, ref in iteritems(bib_data_dict):
-            if ref.type in ref_types[type_]:
-                count += 1
+        for ref_label, ref in iteritems(bib_data_dict):
+            if ref_label in keys:
+                if ref.type in ref_types[type_]:
+                    count += 1
 
         ind_paper = count
 
@@ -127,18 +128,20 @@ class HTMLWriter(object):
         with self.enumerated_list():
             index = len(bib_data_dict)
             for ref_label, ref in iteritems(bib_data_dict):
-                if ref.type in ref_types[type_]:
-                    with self.bullet():
-                        index -= 1
-                        self.write_line(label.format(index))
-                        self.write_reference(ref_label, ref)
+                if ref_label in keys:
+                    if ref.type in ref_types[type_]:
+                        with self.bullet():
+                            index -= 1
+                            self.write_line(label.format(index))
+                            self.write_reference(ref_label, ref)
 
-    def write_lines_by_year(self, bib_data_dict):
+    def write_lines_by_year(self, bib_data_dict, keys):
         years = []
         for ref_label, ref in iteritems(bib_data_dict):
-            year = ref.fields['year']
-            if year not in years:
-                years.append(year)
+            if ref_label in keys:
+                year = ref.fields['year']
+                if year not in years:
+                    years.append(year)
 
         old_years = [int(year) for year in years] # convert to ints
         old_years.sort() # sort in place in ascending order
@@ -149,9 +152,10 @@ class HTMLWriter(object):
             self.write_heading(year)
             with self.enumerated_list():
                 for ref_label, ref in iteritems(bib_data_dict):
-                    if ref.fields['year'] == year:
-                        with self.bullet():
-                            self.write_reference(ref_label, ref)
+                    if ref_label in keys:
+                        if ref.fields['year'] == year:
+                            with self.bullet():
+                                self.write_reference(ref_label, ref)
 
     @contextmanager
     def enumerated_list(self):
