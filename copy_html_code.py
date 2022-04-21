@@ -16,6 +16,7 @@ lsdo_journal_keys = list(load_bib_data_dict(lsdo_journal=True).keys())
 lsdo_conference_keys = list(load_bib_data_dict(lsdo_conference=True).keys())
 lsdo_keys = lsdo_journal_keys + lsdo_conference_keys
 uli_journal_keys = [
+    'yan2022topology',
     'zhao2022open',
 ]
 uli_conference_keys = [
