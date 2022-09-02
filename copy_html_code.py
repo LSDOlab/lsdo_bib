@@ -16,10 +16,14 @@ lsdo_journal_keys = list(load_bib_data_dict(lsdo_journal=True).keys())
 lsdo_conference_keys = list(load_bib_data_dict(lsdo_conference=True).keys())
 lsdo_keys = lsdo_journal_keys + lsdo_conference_keys
 uli_journal_keys = [
+    'wang2022equality',
     'yan2022topology',
     'zhao2022open',
 ]
 uli_conference_keys = [
+    'orndorff2022investigation',
+    'wang2022efficient',
+    'yan2022frequency',
 ]
 uli_keys = uli_journal_keys + uli_conference_keys
 
